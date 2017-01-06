@@ -1,0 +1,17 @@
+event	char
+choiceA	A
+choiceB	B
+choiceC	C
+choiceD	D
+choiceE	E
+choiceF	F
+choiceG	G
+step1	1
+step2	2
+step3	3
+step4	4
+step5	5
+step6	6
+step7	7
+space	0
+question	Q
