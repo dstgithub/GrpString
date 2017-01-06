@@ -1,0 +1,20 @@
+Package: GrpString
+Type: Package
+Title: Patterns and Statistical Differences Between Two Groups of Strings
+Version: 0.1.0
+Date: 2016-12-28
+Author: Hui (Tom) Tang, Norbert J. Pienta
+Maintainer: Hui (Tom) Tang <htang2013@gmail.com>
+Description: Methods include converting series of event names to strings,
+    discovering common patterns in a group of strings, discovering "unique" patterns
+    when comparing two groups of strings as well as the number and starting position
+    of each "unique" pattern in each string, finding the transition information, and
+    statistically comparing the difference between two groups of strings.
+License: GPL-2
+Depends: R (>= 3.0.1)
+Imports:
+    utils,
+    plyr,
+    graphics
+RoxygenNote: 5.0.1
+Suggests: testthat
