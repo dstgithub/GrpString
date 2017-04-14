@@ -1,11 +1,11 @@
 \name{StrDif}
 \alias{StrDif}
 \title{
-Statistically compare the difference between two group of strings
+Statistically compares the difference between two groups of strings
 }
 \description{
-StrDifStat tests whether the difference between two groups of strings is statistically significant or not.
-The difference is based on normalized Levenstein distances between strings. A permutation test is used 
+StrDif tests whether the difference between two groups of strings is statistically significant or not.
+The difference is based on normalized Levenshtein distances between strings. A permutation test is used 
 as the statistical method.
 }
 \usage{
@@ -44,8 +44,8 @@ and p.y is below 0.2 * num_perm. If non-default values are used, the values beco
 The function generates a histogram that demonstrates the distribution of the differences of LDs, the original
 difference, and the p value.
 
-    The function also returns a vector containing differences of normalized Levenstein distances (LD). 
-The total number of differences is num_perm (number of permuations).
+    The function also returns a vector containing differences of normalized Levenshtein distances (LD). 
+The total number of differences is num_perm (number of permutations).
 
     Differences are calculated by subtracting within-group LD from between-group LD. They range from -1 to 1.
     The "observed" difference is the difference from the original data set. 
@@ -67,17 +67,17 @@ it's better for the user to use a vector to store the returned results,
 instead of printing out directly. See the examples. 
 
     2. The positions of legend and p value in the histogram generated from function StrDif may not be ideal
-for different (permutations on differences of normalized Levenstein distances) situations.
+for different (permutations on differences of normalized Levenshtein distances) situations.
 Thus, this package includes another function, HistDif, to customize the positions of legend and p value in the histogram.
 
-    3. The time to run this function can be relativle long (from seconds to mimutes depending on the number and lengths of strings as well as the computer performance).
+    3. The time to run this function can be relatively long (from seconds to minutes depending on the number and lengths of strings as well as the computer performance).
 
-    4. The first version of this function was developed with significant help from Dr. Rhonda DeCook 
+    4. Acknowledgement: The first version of this function was developed with significant help from Dr. Rhonda DeCook 
 in the Department of Statistics and Actuarial Science at the University of Iowa.
 }
 
 \seealso{
-HistDif
+\code{\link{HistDif}}
 }
 \examples{
 # simple stings, non-default permutation number and p-value position

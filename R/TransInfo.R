@@ -2,9 +2,16 @@
 TransInfo <-
 function(strings.vec, type1 = "letters", type2 = "digits"){
 
+  # remove strings with less than 2 characters 
+  stringsx.pos <- which(nchar(strings.vec) >= 2)
+  stringsx.vec <- strings.vec[stringsx.pos]
+
+  # make sure stringsx.vec is characters
+  stringsx.vec <- as.character(stringsx.vec)
+  
    # number of strings
 
-   numStr <- length(strings.vec)
+   numStr <- length(stringsx.vec)
 
 
    # default transition types
@@ -49,7 +56,7 @@ function(strings.vec, type1 = "letters", type2 = "digits"){
 
    ### split each string to substrings with length of 2
 
-   strings.ss.list <- lapply(strings.vec, Split2)
+   strings.ss.list <- lapply(stringsx.vec, Split2)
 
 
    ### all 1st type of transitions (default all letters)

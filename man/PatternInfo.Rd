@@ -1,10 +1,10 @@
 \name{PatternInfo}
 \alias{PatternInfo}
 \title{
-Discover pattern information in one group of strings
+Discovers pattern information in one group of strings
 }
 \description{
-PatternInfo discovers the start position of each pattern that occurs first or last
+PatternInfo discovers the starting position of each pattern that occurs first or last
 as well as the number of patterns in each string.
 }
 \usage{
@@ -19,7 +19,7 @@ Pattern vector.
 String vector.
 }
   \item{rev}{
-Determine whether returning the start positions of patterns that occur first or last.
+Determine whether returning the starting positions of patterns that occur first or last in strings.
 Default is first.
 }
 }
@@ -29,7 +29,7 @@ Returns a data frame, which contains the length of each string, and the starting
 }
 
 \seealso{
-UniPatterns
+\code{\link{UniPatterns}}
 }
 \examples{
 # simple strings and patterns

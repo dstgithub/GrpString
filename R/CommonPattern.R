@@ -8,8 +8,6 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
    strings.vec_name <- deparse(substitute(strings.vec))
 
 
-
-
    ##### 2. Store string information
    # column1: strings; column2:lengths of strings; column3:number of all substrings
 
@@ -167,13 +165,6 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
 
    subStr_result_out.df <- subStr_result_out.df[with(subStr_result_out.df,
            order(-subStr_result_out.df$Length, -subStr_result_out.df$Freq_total)),]
-   subStr_result_outx.df <- subStr_result_out.df[, -4]
-
-   # 6.2.2 Write the raw result to .txt as output file. 
-
-   out.raw.name <- paste0(strings.vec_name, "_out", ".txt")
-   utils::write.table(subStr_result_outx.df, sep = "\t",
-                      row.names=F, col.names = TRUE, file = out.raw.name)
 
 
    # 6.3 Case 1: use only frequencies >= 2, then remove the ratio column (no conversion to token)
@@ -275,7 +266,7 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
    ##### 8. End of function reminder
 
    cat('      Files with different percentages of common patterns are exported.
-      Patterns occur at least twice and all possible substrings are exported in separate files.\n')
+      Patterns occur at least twice are exported in a separate file.\n')
    sprintf("Number of original strings: %d; Total number of substrings (patterns): %d.", numStrings, numPatternTotal)
 
 }
