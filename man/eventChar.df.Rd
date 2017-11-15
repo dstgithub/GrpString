@@ -5,8 +5,7 @@
 Event name - character conversion key
 }
 \description{
-A data frame where each element in column event (event name) corresponds to an element in column char (character),
-which can be a letter, digit, or a special character.
+A data frame where each element in column 'event' (event name) corresponds to an element in column 'char' (character), which can be a letter, digit, or a special character.
 }
 \usage{data(eventChar.df)}
 \format{

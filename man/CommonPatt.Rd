@@ -31,17 +31,17 @@ The function returns a data frame containing patterns, lengths and percentages o
     
     Column 1 - Pattern: common pattern.
     
-    Column 2 - Freq_total: the overall frequency (times of occurrence) of each pattern.
+    Column 2 - Freq_grp: the overall frequency (times of occurrence) of each pattern.
     
-    Column 3 - Percent_total: the ratio of Freq_total to the number of original strings, in percent. 
+    Column 3 - Percent_grp: the ratio of Freq_grp to the number of original strings, in percent. 
     
     Column 4 - Length: the length (i.e., number of characters) of pattern.
     
-    Column 5 - Freq_str: similar to Freq_total; but each pattern is counted only once in a string even if the string contains that pattern multiple times.
+    Column 5 - Freq_str: similar to Freq_grp; but each pattern is counted only once in a string even if the string contains that pattern multiple times.
     
     Column 6 - Percent_str: similar to Percent; but each pattern is counted only once in a string if this string contains the pattern.
     
-    Data is sorted by Length, then Freq_total, in decreasing order.
+    Data is sorted by Length, then Freq_grp, in decreasing order.
 }
 \references{
 1. H. Tang; E. Day; L. Kendhammer; J. N. Moore; S. A. Brown; N. J. Pienta. (2016). Eye movement patterns in solving science ordering problems. Journal of eye movement research, 9(3), 1-13.

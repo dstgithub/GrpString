@@ -5,7 +5,7 @@ Statistically compares the difference between two groups of strings
 }
 \description{
 StrDif tests whether the difference between two groups of strings is statistically significant or not.
-The difference is based on normalized Levenshtein distances between strings. A permutation test is used 
+The difference is based on normalized Levenshtein distances (LDs) between strings. A permutation test is used 
 as the statistical method.
 }
 \usage{
@@ -37,14 +37,12 @@ y coordinate of the legend in the histogram, default is 0.
 }
 }
 \details{
-The default values of o.y and p.y are 0. They are actually related to num_perm:  o.y is above 0.2 * num_perm, 
-and p.y is below 0.2 * num_perm. If non-default values are used, the values become absolute y coordinates.
+The default values of o.y and p.y are 0. They are actually related to num_perm:  o.y is above 0.2 * num_perm, and p.y is below 0.2 * num_perm. If non-default values are used, the values become absolute y coordinates.
 }
 \value{
-The function generates a histogram that demonstrates the distribution of the differences of LDs, the original
-difference, and the p value.
+The function generates a histogram that demonstrates the distribution of the differences of LDs, the original difference, and the p value.
 
-    The function also returns a vector containing differences of normalized Levenshtein distances (LD). 
+    The function also returns a vector containing differences of normalized LDs. 
 The total number of differences is num_perm (number of permutations).
 
     Differences are calculated by subtracting within-group LD from between-group LD. They range from -1 to 1.

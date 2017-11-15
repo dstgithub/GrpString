@@ -7,7 +7,6 @@ Transitions in one group of strings
 TransInfo discovers transitions of two adjacent characters in strings.
 
     A transition is defined as a substring (in the forward order) with length of 2 characters.
-It can be considered as a special common pattern (length of 2).
 }
 \usage{
 TransInfo(strings.vec, type1 = "letters", type2 = "digits")

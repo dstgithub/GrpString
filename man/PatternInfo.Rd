@@ -29,7 +29,7 @@ Returns a data frame, which contains the length of each string, and the starting
 }
 
 \seealso{
-\code{\link{UniPatterns}}
+\code{\link{FeaturedPatt}}
 }
 \examples{
 # simple strings and patterns

@@ -46,6 +46,7 @@ The users may copy eve1d.txt to a directory that can be easily found.
 }
 
 \seealso{
+\code{\link{EveS}}, 
 \code{\link{EveStr}}
 }
 \examples{

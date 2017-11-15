@@ -20,7 +20,7 @@ String Vector.
 Returns a number vector.
 }
 \details{
-Entropy is calculated using the Shannon entropy formula: -sum(freqs * log2(freqs)). Here, freqs are transition frequencies, which are the values in the normalized transition matrix exported by function TransMx in this package. The formula is equivalent to the function entropy.empirical in the entropy package when unit is set to log2.
+Entropy is calculated using the Shannon entropy formula: -sum(freqs * log2(freqs)). Here, freqs are transition frequencies, which are the values in the normalized transition matrix exported by function TransMx in this package. The formula is equivalent to the function entropy.empirical in the 'entropy' package when unit is set to log2.
 }
 \note{
 Strings with less than 2 characters are not included for computation of entropy.

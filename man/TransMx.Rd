@@ -7,7 +7,6 @@ Transition matrices in one group of strings
 TransMx discovers transition matrix of a string vector and the related information.
 
     A transition is defined as a substring (in the forward order) with length of 2 characters.
-It can be considered as a special common pattern (length of 2).
 }
 \usage{
 TransMx(strings.vec, indiv = FALSE)
