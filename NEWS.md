@@ -1,3 +1,16 @@
+# GrpString 0.3.2
+
+* Updated 2017-08-15:
+
+* Add function EveS.
+
+* Change the name of function 'UniPatterns' to 'FeaturedPatt'.
+
+* Functions CommonPatt and CommonPattern: column names with '_total' changed to '_grp'.
+
+* Function StrKclust: update cluter plot
+
+
 # GrpString 0.3.1
 
 * Updated 2017-04-13:
