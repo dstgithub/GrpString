@@ -65,14 +65,14 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
 
    subStr_all_result.df <- as.data.frame(table(unlist(subStr_all.df)))
 
-   names(subStr_all_result.df) <- c("Pattern", "Freq_total")
+   names(subStr_all_result.df) <- c("Pattern", "Freq_grp")
 
    # in case substring starting w/ '0'.
    subStr_all_result.df$Pattern <- as.character(subStr_all_result.df$Pattern)
 
    # 4.2 Ratio of number of each substring to number of original full strings
 
-   pattRatio <- subStr_all_result.df$Freq_total/numStrings
+   pattRatio <- subStr_all_result.df$Freq_grp/numStrings
 
    # 4.3 function to write as percent format
 
@@ -83,7 +83,7 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
    # 4.4 more columns
 
    # Percentage in % and digit formats, respectively
-   subStr_all_result.df$Percent_total <- percent(pattRatio) # column of ratio in percent
+   subStr_all_result.df$Percent_grp <- percent(pattRatio) # column of ratio in percent
    subStr_all_result.df$pattRatio <- pattRatio            # column of ratio in digits
    subStr_all_result.df$pattRatio <- format(subStr_all_result.df$pattRatio, digits = 2, nsmall = 2)
 
@@ -164,12 +164,12 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
    # 6.2.1 Sort substring length (long to short), then frequency (high to low), then remove the ratio column 
 
    subStr_result_out.df <- subStr_result_out.df[with(subStr_result_out.df,
-           order(-subStr_result_out.df$Length, -subStr_result_out.df$Freq_total)),]
+           order(-subStr_result_out.df$Length, -subStr_result_out.df$Freq_grp)),]
 
 
    # 6.3 Case 1: use only frequencies >= 2, then remove the ratio column (no conversion to token)
 
-   subStr_result_out_f2.df <- subset(subStr_result_out.df, subStr_result_out.df$Freq_total > 1)[, -4]
+   subStr_result_out_f2.df <- subset(subStr_result_out.df, subStr_result_out.df$Freq_grp > 1)[, -4]
 
    # 6.3.1 name of output file
 
