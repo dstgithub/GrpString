@@ -1,3 +1,17 @@
+# GrpString 0.5.1
+
+* Updated 2026-02-23:
+
+* Developed a Shiny application for this package: https://github.com/dstgithub/GrpString-Shiny
+
+* Functions no longer write any tables into local folders: CommonPattern, TransMx, FeaturedPatt
+
+* Function CommonPattern: function is simplified to keep only one cutoff and require converting back.
+
+* Function FeaturedPatt: change to UniPatterns
+
+* Function TransMx: remove the 'indiv' parameter
+  
 # GrpString 0.3.2
 
 * Updated 2017-08-15:
@@ -45,5 +59,6 @@
 
 
 # GrpString 0.1.0
+
 
 * Created 2017-01-06
