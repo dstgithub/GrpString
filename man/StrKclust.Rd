@@ -8,7 +8,7 @@ StrKclust discovers clusters of the strings in a group.
 
 }
 \usage{
-StrKclust(strings.vec, nclust = 2, nstart = 1, shade = FALSE)
+StrKclust(strings.vec, nclust = 2, nstart = 1)
 }
 \arguments{
   \item{strings.vec}{
@@ -19,9 +19,6 @@ Number of clusters. Default is 2.
 }
   \item{nstart}{
 Number of random data sets chosen to start. Default is 1.
-}
-  \item{shade}{
-Whether shade the ellipses in the cluster plot or not. Default is false.
 }
 }
 

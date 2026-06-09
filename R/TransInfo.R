@@ -82,10 +82,9 @@ function(strings.vec, type1 = "letters", type2 = "digits"){
    transition_number[2] <- length(unlist(type2.list))
    transition_number[3] <- length(unlist(act_mixed.list))
 
-   transition_name <- c("type1", "type2", "mixed")
+   transition_type <- c("type1", "type2", "mixed")
 
-
-   transitions.df <- data.frame(transition_name, transition_number)
+   transitions.df <- data.frame(transition_type, transition_number)
  
 
    return(transitions.df)

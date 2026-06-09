@@ -1,0 +1,12 @@
+getwd()
+data(str1)#
+data(str2)#
+data(p1_20up)#
+data(p2_25up)#
+UniPatterns(p1_20up, p2_25up, str1, str2)
+library(GrpString)
+data(str1)#
+data(str2)#
+data(p1_20up)#
+data(p2_25up)#
+UniPatterns(p1_20up, p2_25up, str1, str2)

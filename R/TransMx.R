@@ -1,5 +1,5 @@
 #' @export
-TransMx <- function(strings.vec, indiv = FALSE){
+TransMx <- function(strings.vec){
 
    ##### Prepare: get the name of the input string vector
        strings.vec_name <- deparse(substitute(strings.vec))
@@ -165,37 +165,8 @@ TransMx <- function(strings.vec, indiv = FALSE){
                               Transition_Normalized_Matrix = trans.df.sum_norm1.df,
                               Transition_Organized = trans_num.df)
         
-        
-
-   ##### 7. optional: output individual matrix
- 
-   if(indiv == TRUE){ 
-
-      # 7.1 add a column for starting positions ('From') of transitions to each df
-      trans.df1.list <- lapply(trans.df.list, function(x){
-                             x <- noquote(cbind(str.spu, x))
-                             colnames(x)[1] <- "From/To" 
-                             return(x)
-                            })
-
-      # 7.2 prepare out files names   
-      # stringsx.pos contains the positions of strings in original vec with at least 2 characters
-      num_strings.c <- sprintf("%02d", stringsx.pos)
-
-       # 7.3 out file names (based on the input vec), one for each string
-      out.file.names <- paste0(strings.vec_name, "_", num_strings.c, "mx", ".txt")
-
-      # 7.4 Write output transition matrix file for each string
-      lapply(1:num_strings, function(i){
-               utils::write.table(trans.df1.list[[i]], sep = "\t", row.names = FALSE,
-                           col.names = TRUE, file = out.file.names[i])
-      })
-
-   }  
-   ##### end of 'if' optional
 
    ##### return the list containing the 3 df
 
     return(trans.out.df.list)
-
 }

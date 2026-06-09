@@ -1,20 +1,16 @@
 #' @export
 EveS <-
-  function(eves.vec, eveName.vec, char.vec){
+  function(names.vec, eveName.vec, char.vec){
     
-    ##### 1. number of eveNames in the vector
+    ##### 1. number of eveNames in each row; empty cells are not counted - not apply here
     
-    eveName_num <- length(eves.vec)
+    eveName_num <- length(names.vec)
     
     
     ##### 2. replace eveNames to characters
-
-    # 2.0 make sure elements in conversion key are character
-    eveName.vec <- as.character(eveName.vec)
-    char.vec <- as.character(char.vec)
     
     # 2.1 replace   
-    eveName_to_char.vec <- plyr::mapvalues(eves.vec, eveName.vec, char.vec, warn_missing = FALSE)
+    eveName_to_char.vec <- plyr::mapvalues(names.vec, eveName.vec, char.vec, warn_missing = FALSE)
     
     
     # 2.2 remove NA
@@ -23,7 +19,7 @@ EveS <-
     
     ##### 3. combine characters to a string 
     
-    # 3.1 combine chars to a string 
+    # 3.1 combine chars to a string in each row and store in a dataframe
     char_to_string <- paste(eveName_to_char.vec1, collapse = "")
     
     # 3.2 check the sum of the lengths of strings, to see whether it matches the number in 1. 

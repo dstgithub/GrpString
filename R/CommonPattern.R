@@ -1,6 +1,6 @@
 #' @export
 CommonPattern <-
-function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
+function(strings.vec, low = 30, eveChar.df){
 
    ##### 1. Prepare file names
 
@@ -65,14 +65,14 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
 
    subStr_all_result.df <- as.data.frame(table(unlist(subStr_all.df)))
 
-   names(subStr_all_result.df) <- c("Pattern", "Freq_grp")
+   names(subStr_all_result.df) <- c("Pattern", "Freq_total")
 
    # in case substring starting w/ '0'.
    subStr_all_result.df$Pattern <- as.character(subStr_all_result.df$Pattern)
 
    # 4.2 Ratio of number of each substring to number of original full strings
 
-   pattRatio <- subStr_all_result.df$Freq_grp/numStrings
+   pattRatio <- subStr_all_result.df$Freq_total/numStrings
 
    # 4.3 function to write as percent format
 
@@ -83,7 +83,7 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
    # 4.4 more columns
 
    # Percentage in % and digit formats, respectively
-   subStr_all_result.df$Percent_grp <- percent(pattRatio) # column of ratio in percent
+   subStr_all_result.df$Percent_total <- percent(pattRatio) # column of ratio in percent
    subStr_all_result.df$pattRatio <- pattRatio            # column of ratio in digits
    subStr_all_result.df$pattRatio <- format(subStr_all_result.df$pattRatio, digits = 2, nsmall = 2)
 
@@ -152,7 +152,7 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
 
    ##### 6. Combine all and once to all.
 
-   # 6.1 Duplicate the 'all' df
+   # 6.1 Copy the 'all' df
 
    subStr_result_out.df <- subStr_all_result.df
 
@@ -164,109 +164,44 @@ function(strings.vec, low = 5, high = 25, interval = 5, eveChar.df){
    # 6.2.1 Sort substring length (long to short), then frequency (high to low), then remove the ratio column 
 
    subStr_result_out.df <- subStr_result_out.df[with(subStr_result_out.df,
-           order(-subStr_result_out.df$Length, -subStr_result_out.df$Freq_grp)),]
+           order(-subStr_result_out.df$Length, -subStr_result_out.df$Freq_total)),]
 
 
-   # 6.3 Case 1: use only frequencies >= 2, then remove the ratio column (no conversion to token)
+   # 6.3 use only pattRatio >=low, then remove the ratio column (no conversion to token)
+   
+   subStr_result_out_f2.df <- subset(subStr_result_out.df, subStr_result_out.df$pattRatio >= (low/100))[, -4]
+   
+   
+   ##### 7. Convert characters back to event names
 
-   subStr_result_out_f2.df <- subset(subStr_result_out.df, subStr_result_out.df$Freq_grp > 1)[, -4]
+      # 7.1 convert character back to event name     
+      # 7.1.1 Split all patterns (substrings)
 
-   # 6.3.1 name of output file
+      subStr_result_cutoff.sp.list <- strsplit(subStr_result_out_f2.df$Pattern, split = "")
 
-   out.f2.name <- paste0(strings.vec_name, "_f2up", ".txt")
-
-   # 6.3.2 Write .txt as output file. Note no conversion happens here because patterns with freq>=2 can be a lot.
-
-   utils::write.table(subStr_result_out_f2.df, sep = "\t",
-                      row.names=F, col.names = TRUE, file = out.f2.name)
-
-
-   # 6.4 Case 2+: use pattern Ratio >= low_cutoff, ... 15%, 20%, 25%,...high_cutoff..., respectively
-   #     default percentages: low_cutoff = 5, high_cutoff = 25, inter_cutoff = 5
-
-   # 6.4.1 cutoff sequence: from ow_cutoff to high_cutoff
-
-   cutoff.seq <- seq(low, high, by = interval)
-
-   # count numbers in the range
-
-   cutoff.seq_num <- length(cutoff.seq)
-
-   # percentage to percent in digits
-
-   cutoff.seq.n <- 0.01 * cutoff.seq
-
-   # form of 2 digits for every number
-
-   cutoff.seq.c <- sprintf("%02d", cutoff.seq)
-
-   # 6.4.2 names of output files
-
-   out.file.names <- paste0(strings.vec_name, "_", cutoff.seq.c, "up", ".txt")
-
-   # 6.4.3 Get list containing dfs with different %, then remove the ratio column
-
-   subStr_result_cutoff.list <- lapply(cutoff.seq.n, function(x){
-                                    subset(subStr_result_out.df, subStr_result_out.df$pattRatio >= x)[, -4]
-                                })
-
-   ##### 7. Optional: convert characters back to event names
-
-   # Test whether conversion is needed or not
-
-   if(missing(eveChar.df)){
-
-      # 7.1 Directly write output files with different percentages
-
-      lapply(1:cutoff.seq_num, function(i){
-               utils::write.table(subStr_result_cutoff.list[[i]], sep = "\t", row.names = FALSE, col.names = TRUE,
-                      file = out.file.names[i])
-      })
-   } else{
-
-      # 7.2 convert character back to event name     
-      # 7.2.1 Split all patterns (substrings)
-
-      subStr_result_cutoff.sp.list <- lapply(1:cutoff.seq_num, function(i){
-                                              strsplit(subStr_result_cutoff.list[[i]]$Pattern, split = "")
-                                      }) 
-
-
-      # 7.2.2 replace characters with event names, then combine each set of event names to a string
+      # 7.1.2 replace characters with event names, then combine each set of event names to a string
 
       subStr_result_cutoff.t.list <- lapply(subStr_result_cutoff.sp.list, function(x){ 
-                                            lapply(1:length(x), function(i){
-                                               paste(plyr::mapvalues(x[[i]], eveChar.df[,2], eveChar.df[,1],
-                                                     warn_missing = FALSE), collapse = ",")
-                                            })
-                                         })
-
-
-      # 7.2.3 Add the converted strings as the last column of the output df
-
-      subStr_result_cutoff.tr.list <- lapply(1:cutoff.seq_num, function(i){
-                                           cbind(subStr_result_cutoff.list[[i]],
-                                             unlist(subStr_result_cutoff.t.list[[i]]))
-                                })                                                
-
-      # 7.2.4 Change the name of the newly added column 
-      for (i in 1:cutoff.seq_num){
-         names(subStr_result_cutoff.tr.list[[i]])[7] = "Event_name"
-      }
-
-      # 7.3.5 Write output files with different percentages, with an additional patterns (in token) column
-
-      lapply(1:cutoff.seq_num, function(i){
-               utils::write.table(subStr_result_cutoff.tr.list[[i]], sep = "\t", row.names = FALSE, col.names = TRUE,
-                      file = out.file.names[i])
+        sapply(1:length(x), function(i){
+          paste(plyr::mapvalues(x[i], eveChar.df[,2], eveChar.df[,1],
+                                warn_missing = FALSE), collapse = ",")
+        })
       })
-    } # end of else
+      
+      # 7.1.3 Convert patterns back to event names
+      Event_name <- sapply(subStr_result_cutoff.t.list, function(x){
+        paste(x, collapse = ", ")
+      })
+      
+      # 7.1.4 Add the converted strings as the last column of the output df
 
+      subStr_result_cutoff.final <- cbind(subStr_result_out_f2.df, Event_name)
+                                                                           
+      return(subStr_result_cutoff.final)
+      
 
    ##### 8. End of function reminder
 
-   cat('      Files with different percentages of common patterns are exported.
-      Patterns occur at least twice are exported in a separate file.\n')
    sprintf("Number of original strings: %d; Total number of substrings (patterns): %d.", numStrings, numPatternTotal)
 
 }

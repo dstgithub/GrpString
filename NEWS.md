@@ -1,3 +1,6 @@
+
+
+
 # GrpString 0.5.1
 
 * Updated 2026-02-23:
@@ -11,18 +14,11 @@
 * Function FeaturedPatt: change to UniPatterns
 
 * Function TransMx: remove the 'indiv' parameter
-  
+
+
 # GrpString 0.3.2
 
-* Updated 2017-08-15:
-
-* Add function EveS.
-
-* Change the name of function 'UniPatterns' to 'FeaturedPatt'.
-
-* Functions CommonPatt and CommonPattern: column names with '_total' changed to '_grp'.
-
-* Function StrKclust: update cluter plot
+* Published on CRAN 2017-08-15:
 
 
 # GrpString 0.3.1
@@ -59,6 +55,5 @@
 
 
 # GrpString 0.1.0
-
 
 * Created 2017-01-06

@@ -9,10 +9,6 @@ function(eveName.df, eveName.vec, char.vec){
 
    ##### 2. replace eveNames to characters
 
-   # 2.0 make sure elements in conversion key are character
-   eveName.vec <- as.character(eveName.vec)
-   char.vec <- as.character(char.vec)
-
    # 2.1 replace   
    eveName_to_char.df <- apply(eveName.df, 2, function(x){
                  plyr::mapvalues(x, eveName.vec, char.vec, warn_missing = FALSE)

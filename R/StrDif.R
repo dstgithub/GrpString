@@ -211,9 +211,9 @@ function(grp1_string, grp2_string, num_perm = 1000, o.x = 0.01, o.y = 0, p.x = 0
  
 
       tell.list <- sprintf("\n\n For the initial two groups of strings,
-   the average normalized between-group levenshtein Distance is:  %.5f  
-   the average normalized within-group levenshtein Distance is:  %.5f  
-   the difference in the average normalized levenshtein Distance between between-group and within-group is:  %.5f.
+   the average normalized between-group Levenstein Distance is:  %.5f  
+   the average normalized within-group Levenstein Distance is:  %.5f  
+   the difference in the average normalized Levenstein Distance between between-group and within-group is:  %.5f.
    The p value of the permutation test is:   %.5f \n\n",
    ld.between_norm.ori, ld.within_norm.ori, dif_ld_norm.ori, pvalue)
    cat(tell.list)

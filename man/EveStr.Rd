@@ -35,7 +35,6 @@ The function returns a string vector.
 }
 
 \seealso{
-\code{\link{EveS}}, 
 \code{\link{EveString}}
 }
 \examples{
